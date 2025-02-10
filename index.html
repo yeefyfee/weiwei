@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>点菜网页</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.17.0/xlsx.full.min.js"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <header>
+        <input type="text" id="search" placeholder="搜索..." oninput="filterItems()">
+    </header>
+    <main>
+        <section class="recommendations" id="itemList">
+            <h2>今日推荐</h2>
+            <!-- 菜单项将通过 JavaScript 动态生成 -->
+        </section>
+        <section class="cart" id="cart">
+            <h2>购物车</h2>
+            <ul id="cartItems"></ul>
+            <button onclick="confirmOrder()">确认订单</button>
+        </section>
+    </main>
+
+    <!-- 弹出窗口 -->
+    <div id="popup" class="popup" style="display: none;">
+        <div class="popup-content" id="popupContent"></div>
+        <button onclick="saveAsImage()">保存为图片</button>
+        <button onclick="closePopup()">关闭</button>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>

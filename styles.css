@@ -1,0 +1,144 @@
+/* styles.css */
+body {
+    font-family: Arial, sans-serif;
+    margin: 0;
+    padding: 0;
+    background-color: #f9f9f9;
+}
+
+header {
+    background-color: #fff;
+    padding: 10px;
+    text-align: center;
+}
+
+input[type="text"] {
+    width: 80%;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 5px;
+}
+
+main {
+    padding: 20px;
+}
+
+/* 菜单区域样式 */
+.recommendations {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 20px;
+    background-color: #ffffff; /* 菜单区域背景颜色 */
+    padding: 15px; /* 内边距 */
+    border-radius: 10px; /* 圆角 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+}
+
+/* 菜单项样式 */
+.item {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    width: 150px;
+    transition: transform 0.3s; /* 添加过渡效果 */
+}
+
+.item:hover {
+    transform: scale(1.05); /* 鼠标悬停时放大 */
+}
+
+.item img {
+    width: 100%;
+    height: auto;
+    border-radius: 5px;
+}
+
+.info {
+    text-align: center;
+}
+
+/* 购物车区域样式 */
+.cart {
+    background-color: #d0e8d0; /* 浅草色背景 */
+    padding: 15px; /* 内边距 */
+    border-radius: 10px; /* 圆角 */
+    box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1); /* 阴影效果 */
+    margin-top: 20px; /* 上边距 */
+}
+
+.cart ul {
+    list-style-type: none;
+    padding: 0;
+}
+
+.cart li {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 10px;
+}
+
+.cart li button {
+    background-color: transparent;
+    color: #ff4d4d;
+    border: none;
+    cursor: pointer;
+    font-size: 20px;
+}
+
+/* 按钮样式 */
+button {
+    background-color: #ff4d4d;
+    color: white;
+    border: none;
+    padding: 10px;
+    border-radius: 5px;
+    cursor: pointer;
+}
+
+button:hover {
+    background-color: #ff1a1a;
+}
+
+/* 弹出窗口样式 */
+.popup {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.7);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    opacity: 0; /* 初始透明度 */
+    transition: opacity 0.3s; /* 添加过渡效果 */
+}
+
+.popup.show {
+    opacity: 1; /* 显示时的透明度 */
+}
+
+.popup-content {
+    background-color: white;
+    padding: 20px;
+    border-radius: 10px;
+    text-align: center;
+    max-width: 90%; /* 限制最大宽度 */
+    overflow-y: auto; /* 允许垂直滚动 */
+    max-height: 80%; /* 限制最大高度 */
+}
+
+.popup-content img {
+    width: 150px; /* 增加图片宽度 */
+    height: auto; /* 高度自适应 */
+    margin-bottom: 10px; /* 图片与文本之间的间距 */
+}
+
+.popup-content h3 {
+    font-size: 16px; /* 增加菜名字体大小 */
+    margin: 0; /* 去掉默认的 margin */
+    white-space: nowrap; /* 不换行 */
+    overflow: hidden; /* 超出部分隐藏 */
+    text-overflow: ellipsis; /* 超出部分用省略号表示 */
+}
