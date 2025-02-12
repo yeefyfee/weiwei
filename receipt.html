@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="zh">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>订单小票</title>
+    <link rel="stylesheet" href="styles.css">
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/html2canvas/1.4.1/html2canvas.min.js"></script>
+</head>
+<body>
+    <header>
+        <h1>订单小票</h1>
+        <button id="shareButton">生成图片发给小易</button>
+    </header>
+    <main id="receiptContent">
+        <!-- 订单内容将通过 JavaScript 动态生成 -->
+    </main>
+
+    <script>
+        // 从 localStorage 获取购物车内容
+        const cart = JSON.parse(localStorage.getItem('cart')) || [];
+
+        // 显示订单内容
+        function displayReceipt() {
+            const receiptContent = document.getElementById('receiptContent');
+            receiptContent.innerHTML = ''; // 清空内容
+
+            cart.forEach(item => {
+                const div = document.createElement('div');
+                div.className = 'receipt-item';
+                div.innerHTML = `
+                    <img src="${item.image}" alt="${item.name}" class="receipt-image">
+                    <span class="receipt-name">${item.name}</span>
+                `;
+                receiptContent.appendChild(div);
+            });
+        }
+
+        // 分享功能
+        document.getElementById('shareButton').onclick = function() {
+            html2canvas(document.getElementById('receiptContent')).then(canvas => {
+                const link = document.createElement('a');
+                link.href = canvas.toDataURL('image/png');
+                link.download = 'receipt.png';
+                link.click();
+            });
+        };
+
+        // 页面加载时显示订单内容
+        window.onload = displayReceipt;
+    </script>
+</body>
+</html> 

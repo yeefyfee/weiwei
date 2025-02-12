@@ -12,6 +12,10 @@ header {
     text-align: center;
 }
 
+h1 {
+    margin: 0;
+}
+
 input[type="text"] {
     width: 80%;
     padding: 10px;
@@ -84,6 +88,27 @@ main {
     border: none;
     cursor: pointer;
     font-size: 20px;
+}
+
+/* 小票样式 */
+.receipt-item {
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid #ccc; /* 边框 */
+    border-radius: 5px; /* 圆角 */
+    background-color: #fff; /* 背景颜色 */
+}
+
+.receipt-image {
+    width: 50px; /* 图片宽度 */
+    height: auto; /* 高度自适应 */
+    margin-right: 10px; /* 图片与文本之间的间距 */
+}
+
+.receipt-name {
+    font-size: 16px; /* 菜名字体大小 */
 }
 
 /* 按钮样式 */

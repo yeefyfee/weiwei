@@ -45,29 +45,19 @@ function filterItems() {
     const searchInput = document.getElementById('search').value.toLowerCase();
     const items = document.querySelectorAll('.item');
 
-    // 获取购物车中所有菜品的名称
-    const cartItemNames = cart.map(item => item.name.toLowerCase());
-
     items.forEach(item => {
         const itemName = item.getAttribute('data-name').toLowerCase();
-        
-        // 检查菜品是否在购物车中
-        if (cartItemNames.includes(itemName)) {
-            item.style.display = 'none'; // 如果在购物车中，则隐藏
+        if (itemName.includes(searchInput)) {
+            item.style.display = 'flex'; // 显示匹配的商品
         } else {
-            // 根据搜索内容显示或隐藏
-            if (itemName.includes(searchInput) || searchInput === '') {
-                item.style.display = 'flex'; // 显示匹配的商品或搜索框为空时显示
-            } else {
-                item.style.display = 'none'; // 隐藏不匹配的商品
-            }
+            item.style.display = 'none'; // 隐藏不匹配的商品
         }
     });
 }
 
 function addToCart(button) {
-    const item = button.closest('.item');
-    const itemName = item.getAttribute('data-name');
+    const item = button.closest('.item'); // 获取最近的 .item 元素
+    const itemName = item.getAttribute('data-name'); // 获取菜品名称
     const itemImage = item.querySelector('img').src; // 获取图片路径
 
     // 添加到购物车
@@ -110,25 +100,11 @@ function removeFromCart(index) {
 
 // 确认订单
 function confirmOrder() {
-    const popup = document.getElementById('popup');
-    const popupContent = document.getElementById('popupContent');
-    popupContent.innerHTML = ''; // 清空弹出内容
+    // 将购物车内容保存到 localStorage
+    localStorage.setItem('cart', JSON.stringify(cart));
 
-    // 检查购物车是否有内容
-    if (cart.length === 0) {
-        popupContent.innerHTML = '<p>购物车为空！</p>'; // 如果购物车为空，显示提示
-    } else {
-        cart.forEach(item => {
-            const div = document.createElement('div');
-            div.innerHTML = `
-                <img src="${item.image}" alt="${item.name}" style="width: 50px; height: auto; margin-right: 10px;">
-                ${item.name}
-            `;
-            popupContent.appendChild(div);
-        });
-    }
-
-    popup.classList.add('show'); // 添加类以显示弹出窗口
+    // 跳转到订单小票页面
+    window.location.href = 'receipt.html';
 }
 
 // 保存为图片
@@ -139,13 +115,11 @@ function saveAsImage() {
         link.href = canvas.toDataURL('image/png');
         link.download = 'order.png';
         link.click();
-    }).catch(error => {
-        console.error('Error generating image:', error);
     });
 }
 
 // 关闭弹出窗口
 function closePopup() {
     const popup = document.getElementById('popup');
-    popup.classList.remove('show'); // 移除类以隐藏弹出窗口
+    popup.style.display = 'none'; // 隐藏弹出窗口
 }
